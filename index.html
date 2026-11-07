@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOCTARA — Northern Lights Voyages</title>
+<meta name="description" content="Small-group aurora voyages to the quietest skies on Earth. Tromsø · Abisko · Reykjavík.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#050a12; --night2:#081120; --ink:#e8f0ee; --dim:#93a7a3; --faint:#5f7370;
+  --aurora1:#3ef2b0; --aurora2:#38b6f6; --aurora3:#a06bff; --gold:#e7c87a;
+  --glass:rgba(255,255,255,.06); --line:rgba(255,255,255,.12);
+  --ease:cubic-bezier(.22,1,.36,1); --ease-soft:cubic-bezier(.4,0,.2,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--night);color:var(--ink);font-family:Manrope,system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
+::selection{background:var(--aurora1);color:#04241a}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+/* ---------- nav : liquid glass pill ---------- */
+nav{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:80;display:flex;align-items:center;gap:34px;
+  background:rgba(10,18,30,.55);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);
+  border:1px solid var(--line);border-radius:999px;padding:10px 12px 10px 22px;box-shadow:0 18px 50px rgba(0,0,0,.45)}
+nav .brand{font-weight:800;letter-spacing:3.5px;font-size:15px}
+nav .links{display:flex;gap:26px;font-size:13.5px;color:var(--dim);font-weight:600}
+nav .links a{transition:color .3s} nav .links a:hover{color:#fff}
+nav .cta{background:#fff;color:#04121a;font-weight:800;font-size:13.5px;padding:9px 18px;border-radius:999px;transition:transform .3s var(--ease)}
+nav .cta:hover{transform:scale(1.05)}
+@media(max-width:720px){nav .links{display:none}}
+/* ---------- hero : living sky ---------- */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:140px 0 56px;overflow:hidden;
+  background:radial-gradient(120% 90% at 50% 0%,#0a1a2e 0%,var(--night) 62%)}
+#stars{position:absolute;inset:0;width:100%;height:100%}
+.aurora{position:absolute;left:-15%;right:-15%;top:-22%;height:75%;pointer-events:none;filter:blur(38px);opacity:.85}
+.aurora .band{position:absolute;inset:0;border-radius:50%;
+  background:linear-gradient(100deg,transparent 8%,rgba(62,242,176,.5) 32%,rgba(56,182,246,.42) 52%,rgba(160,107,255,.4) 72%,transparent 94%);
+  animation:sway 13s ease-in-out infinite alternate}
+.aurora .band.b2{animation-duration:19s;animation-delay:-6s;opacity:.6;transform:scaleY(.72)}
+.aurora .band.b3{animation-duration:23s;animation-delay:-11s;opacity:.38;transform:scaleY(.5)}
+@keyframes sway{from{transform:translateX(-3.5%) skewX(-4deg) scaleY(1)}to{transform:translateX(3.5%) skewX(5deg) scaleY(1.12)}}
+.hero .fade{position:absolute;inset:auto 0 0 0;height:34%;background:linear-gradient(180deg,transparent,var(--night))}
+.hero .inner{position:relative;z-index:3}
+.kicker{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;font-weight:700;letter-spacing:2.6px;color:var(--aurora1);text-transform:uppercase;margin-bottom:20px}
+.kicker::before{content:"";width:26px;height:1px;background:var(--aurora1)}
+.hero h1{font-family:Fraunces,serif;font-weight:300;font-size:clamp(52px,10.5vw,124px);line-height:.98;letter-spacing:-1.5px;max-width:900px}
+.hero h1 em{font-style:italic;font-weight:500;background:linear-gradient(92deg,var(--aurora1),var(--aurora2) 55%,var(--aurora3));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero h1 .w{display:inline-block;opacity:0;transform:translateY(46px) rotate(1.5deg);animation:rise 1s var(--ease) forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+.hero .sub{margin-top:26px;max-width:520px;color:var(--dim);font-size:17px}
+.hero .row{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px;align-items:center}
+.btn{position:relative;display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:15px;padding:15px 30px;border-radius:999px;transition:transform .3s var(--ease),box-shadow .3s}
+.btn:active{transform:scale(.96)}
+.btn-light{background:#fff;color:#04121a}
+.btn-light:hover{box-shadow:0 10px 34px rgba(62,242,176,.35)}
+.btn-ghost{border:1px solid var(--line);color:var(--ink);background:var(--glass);backdrop-filter:blur(8px)}
+.hero .meta{display:flex;gap:38px;flex-wrap:wrap;margin-top:52px;padding-top:26px;border-top:1px solid var(--line)}
+.hero .meta .n{font-family:Fraunces,serif;font-size:27px;font-weight:600}
+.hero .meta .l{font-size:12.5px;color:var(--faint);font-weight:600;letter-spacing:.6px;text-transform:uppercase}
+.scrolldown{position:absolute;right:30px;bottom:34px;z-index:3;color:var(--faint);font-size:11px;letter-spacing:3px;writing-mode:vertical-rl;display:flex;align-items:center;gap:10px}
+.scrolldown::after{content:"";width:1px;height:52px;background:linear-gradient(180deg,var(--aurora1),transparent);animation:drip 2.2s var(--ease-soft) infinite}
+@keyframes drip{0%{transform:scaleY(0);transform-origin:top}55%{transform:scaleY(1);transform-origin:top}56%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@media(max-width:720px){.scrolldown{display:none}}
+/* ---------- marquee ---------- */
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:17px 0;overflow:hidden;background:rgba(255,255,255,.02)}
+.mq-track{display:flex;width:max-content;animation:mq 30s linear infinite;font-family:Fraunces,serif;font-size:19px;color:var(--dim);white-space:nowrap}
+.mq-track span{padding:0 26px}.mq-track b{color:var(--gold);font-weight:500}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* ---------- sections ---------- */
+section.blk{padding:110px 0 10px}
+.tag{font-size:12px;font-weight:800;letter-spacing:2.6px;color:var(--aurora2);text-transform:uppercase;margin-bottom:14px}
+h2{font-family:Fraunces,serif;font-weight:400;font-size:clamp(32px,5vw,52px);line-height:1.08;letter-spacing:-.5px;max-width:640px}
+h2 em{font-style:italic;color:var(--aurora1)}
+.lede{color:var(--dim);max-width:560px;margin-top:16px;font-size:16.5px}
+/* voyages */
+.voyages{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
+@media(max-width:900px){.voyages{grid-template-columns:1fr}}
+.vcard{position:relative;border:1px solid var(--line);border-radius:22px;padding:28px;overflow:hidden;background:linear-gradient(170deg,rgba(255,255,255,.045),rgba(255,255,255,.01));transition:transform .5s var(--ease),border-color .5s}
+.vcard:hover{transform:translateY(-7px);border-color:rgba(62,242,176,.45)}
+.vcard::before{content:"";position:absolute;inset:-40% -20% auto;height:70%;filter:blur(50px);opacity:.5;background:radial-gradient(closest-side,var(--g,rgba(62,242,176,.5)),transparent)}
+.vcard .place{position:relative;font-size:12.5px;font-weight:800;letter-spacing:2px;color:var(--dim);text-transform:uppercase}
+.vcard h3{position:relative;font-family:Fraunces,serif;font-size:29px;font-weight:500;margin:10px 0 8px}
+.vcard p{position:relative;color:var(--dim);font-size:14.5px;min-height:66px}
+.vcard .foot{position:relative;display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:18px;border-top:1px solid var(--line)}
+.vcard .price{font-family:Fraunces,serif;font-size:22px}
+.vcard .price small{font-family:Manrope;font-size:12px;color:var(--faint)}
+.vcard .go{font-size:13.5px;font-weight:800;color:var(--aurora1)}
+/* the night — parallax statement */
+.night{position:relative;margin-top:110px;padding:150px 0;text-align:center;overflow:hidden;background:radial-gradient(90% 130% at 50% 110%,#0b2138 0%,var(--night) 66%)}
+.night .glow{position:absolute;left:50%;top:110%;width:900px;height:900px;transform:translate(-50%,0);border-radius:50%;filter:blur(70px);opacity:.5;
+  background:radial-gradient(closest-side,rgba(56,182,246,.55),rgba(62,242,176,.25),transparent);will-change:transform}
+.night h2{margin:0 auto;font-size:clamp(34px,6vw,64px);max-width:820px;position:relative;z-index:2}
+.night p{position:relative;z-index:2;color:var(--dim);max-width:520px;margin:20px auto 0}
+/* voices */
+.voices{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
+@media(max-width:900px){.voices{grid-template-columns:1fr}}
+.qcard{border:1px solid var(--line);border-radius:22px;padding:26px;background:rgba(255,255,255,.025)}
+.qcard .stars{color:var(--gold);letter-spacing:3px;margin-bottom:12px}
+.qcard p{font-family:Fraunces,serif;font-size:18.5px;line-height:1.45;font-weight:300}
+.qcard .who{margin-top:16px;font-size:12.5px;color:var(--faint);font-weight:700;letter-spacing:1.4px;text-transform:uppercase}
+/* cta */
+.cta-band{margin:110px 0 0;padding:80px 24px;text-align:center;border-top:1px solid var(--line);background:linear-gradient(180deg,rgba(62,242,176,.05),transparent)}
+.cta-band h2{margin:0 auto}
+footer{border-top:1px solid var(--line);padding:30px 24px 44px;text-align:center;color:var(--faint);font-size:13px}
+/* reveal */
+[data-reveal]{opacity:0;transform:translateY(34px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+[data-reveal].in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}[data-reveal]{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="brand">NOCTARA</span>
+  <span class="links"><a href="#voyages">Voyages</a><a href="#night">The Night</a><a href="#voices">Travellers</a></span>
+  <a class="cta" href="#book">Book a night</a>
+</nav>
+
+<header class="hero">
+  <canvas id="stars"></canvas>
+  <div class="aurora"><div class="band"></div><div class="band b2"></div><div class="band b3"></div></div>
+  <div class="fade"></div>
+  <div class="wrap inner">
+    <span class="kicker">Aurora voyages · 2026 season</span>
+    <h1 id="headline">Chase the sky while it is <em>still dancing</em></h1>
+    <p class="sub">Small groups. Far from city light. We watch the solar wind so you don't have to — when the sky wakes, we drive.</p>
+    <div class="row">
+      <a class="btn btn-light" href="#voyages">See the voyages</a>
+      <a class="btn btn-ghost" href="#night">Why we go at night ↓</a>
+    </div>
+    <div class="meta">
+      <div><div class="n"><span data-count="94">0</span>%</div><div class="l">Sightings last season</div></div>
+      <div><div class="n"><span data-count="8">0</span></div><div class="l">Guests per group, max</div></div>
+      <div><div class="n"><span data-count="3">0</span></div><div class="l">Arctic basecamps</div></div>
+      <div><div class="n"><span data-count="12">0</span></div><div class="l">Years chasing light</div></div>
+    </div>
+  </div>
+  <div class="scrolldown">SCROLL</div>
+</header>
+
+<div class="marquee"><div class="mq-track" id="mq">
+  <span>TROMSØ <b>✦</b></span><span>ABISKO <b>✦</b></span><span>REYKJAVÍK <b>✦</b></span><span>NO LIGHT POLLUTION <b>✦</b></span><span>HOT DRINKS AT −20° <b>✦</b></span><span>PHOTOGRAPHER ON EVERY TOUR <b>✦</b></span>
+</div></div>
+
+<section class="blk" id="voyages"><div class="wrap">
+  <div class="tag" data-reveal>The voyages</div>
+  <h2 data-reveal>Three skies. <em>One promise</em> — we find the dark.</h2>
+  <p class="lede" data-reveal>Every departure is decided the same evening, from live aurora forecasts. If the sky stays shut, the second night is on us.</p>
+  <div class="voyages">
+    <div class="vcard" data-reveal style="--g:rgba(62,242,176,.5)">
+      <div class="place">Norway · Tromsø</div><h3>The Fjord Run</h3>
+      <p>Chase clear skies along the fjords in a heated 4×4, with a photographer who shoots your portrait under the lights.</p>
+      <div class="foot"><span class="price">€290 <small>/ person</small></span><span class="go">Reserve →</span></div>
+    </div>
+    <div class="vcard" data-reveal style="--g:rgba(56,182,246,.5)">
+      <div class="place">Sweden · Abisko</div><h3>The Blue Hole</h3>
+      <p>Abisko's rain-shadow makes it the clearest sky in Europe. Two nights at the Aurora Sky Station, chairlift included.</p>
+      <div class="foot"><span class="price">€540 <small>/ person</small></span><span class="go">Reserve →</span></div>
+    </div>
+    <div class="vcard" data-reveal style="--g:rgba(160,107,255,.5)">
+      <div class="place">Iceland · Reykjavík</div><h3>The Long Dark</h3>
+      <p>A private super-jeep, a thermal lagoon at midnight, and a guide who has read this sky for twelve winters.</p>
+      <div class="foot"><span class="price">€460 <small>/ person</small></span><span class="go">Reserve →</span></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="night" id="night">
+  <div class="glow" id="nightGlow"></div>
+  <div class="wrap">
+    <h2 data-reveal>The aurora does not perform on schedule. <em>So we stay up for it.</em></h2>
+    <p data-reveal>Most tours leave at seven and return by eleven. Ours begin when the data says go — sometimes midnight, sometimes later. The sky rewards the patient.</p>
+  </div>
+</section>
+
+<section class="blk" id="voices"><div class="wrap">
+  <div class="tag" data-reveal>Travellers</div>
+  <h2 data-reveal>Quiet people, <em>loud skies.</em></h2>
+  <div class="voices">
+    <div class="qcard" data-reveal><div class="stars">★★★★★</div><p>"We drove forty minutes past three other tours, into nothing. Then the whole sky opened. Worth every frozen minute."</p><div class="who">Amelia R. · Tromsø</div></div>
+    <div class="qcard" data-reveal><div class="stars">★★★★★</div><p>"They cancelled our first night themselves — said the sky wasn't worth our money. The second night was unreal."</p><div class="who">Kenji T. · Abisko</div></div>
+    <div class="qcard" data-reveal><div class="stars">★★★★★</div><p>"Eight people, one guide, total silence when it started. I have never heard my family that quiet."</p><div class="who">The Okafor family · Iceland</div></div>
+  </div>
+</div></section>
+
+<section class="cta-band" id="book">
+  <div class="tag" data-reveal>2026 season · October – March</div>
+  <h2 data-reveal>The next clear night is <em>closer than you think.</em></h2>
+  <p class="lede" data-reveal style="margin-left:auto;margin-right:auto">Groups cap at eight and the best skies sell out weeks ahead.</p>
+  <div class="row" style="justify-content:center;margin-top:30px" data-reveal>
+    <a class="btn btn-light" href="#voyages">Book your night</a>
+  </div>
+</section>
+
+<footer>NOCTARA — a design sample built with the MotionSites Web Builder skill. Fictional brand; prices and quotes are illustrative.</footer>
+
+<script>
+(function(){
+  /* headline word choreography */
+  var h=document.getElementById('headline');
+  h.innerHTML=h.innerHTML.split(/(<em>.*?<\/em>|\s+)/).filter(function(p){return p.trim()||p.indexOf('<em')===0}).map(function(p,i){
+    if(p.indexOf('<em')===0) return p.replace('<em>','<em class="w" style="animation-delay:'+(0.15+i*0.09)+'s;display:inline-block">');
+    return p.split(/\s+/).filter(Boolean).map(function(w,j){return '<span class="w" style="animation-delay:'+(0.15+(i+j)*0.07)+'s">'+w+'</span>'}).join(' ');
+  }).join(' ');
+  /* starfield canvas */
+  var cv=document.getElementById('stars'),cx=cv.getContext('2d'),stars=[],W,H;
+  function size(){ W=cv.width=cv.offsetWidth; H=cv.height=cv.offsetHeight;
+    stars=Array.from({length:170},function(){return {x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.3+.2,p:Math.random()*Math.PI*2,s:.008+Math.random()*.02}}); }
+  size(); addEventListener('resize',size);
+  (function draw(){ cx.clearRect(0,0,W,H);
+    stars.forEach(function(st){ st.p+=st.s; var a=.35+.65*Math.abs(Math.sin(st.p));
+      cx.globalAlpha=a; cx.fillStyle='#dff5ff'; cx.beginPath(); cx.arc(st.x,st.y,st.r,0,7); cx.fill(); });
+    cx.globalAlpha=1; requestAnimationFrame(draw); })();
+  /* reveals + stagger */
+  var io=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target);} }); },{threshold:.14});
+  document.querySelectorAll('[data-reveal]').forEach(function(el,i){ el.style.transitionDelay=((i%3)*90)+'ms'; io.observe(el); });
+  /* counters */
+  var cio=new IntersectionObserver(function(es){ es.forEach(function(en){ if(!en.isIntersecting)return; cio.unobserve(en.target);
+    var el=en.target,end=+el.dataset.count,t0=null;
+    (function tick(ts){ if(!t0)t0=ts; var p=Math.min((ts-t0)/1300,1),e=1-Math.pow(1-p,3);
+      el.textContent=Math.round(end*e); if(p<1) requestAnimationFrame(tick); })(performance.now());
+  }); },{threshold:.6});
+  document.querySelectorAll('[data-count]').forEach(function(el){cio.observe(el)});
+  /* marquee loop */
+  var mq=document.getElementById('mq'); mq.innerHTML+=mq.innerHTML;
+  /* parallax glow in the night section */
+  var glow=document.getElementById('nightGlow'), night=document.getElementById('night');
+  addEventListener('scroll',function(){
+    var r=night.getBoundingClientRect(), vh=innerHeight;
+    if(r.top<vh && r.bottom>0){ var p=(vh-r.top)/(vh+r.height); glow.style.transform='translate(-50%,'+(-(p*260))+'px)'; }
+  },{passive:true});
+})();
+</script>
+</body>
+</html>
